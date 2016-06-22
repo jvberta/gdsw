@@ -1,0 +1,18 @@
+{
+  "name": "query-handler",
+  "version": "1.2.1",
+  "description": "module for parsing the query in a get request and transforming into a mongoose like query ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "query",
+    "parameters",
+    "mongoose",
+    "handler"
+  ],
+  "author": "Joao Victor",
+  "license": "ISC"
+}
