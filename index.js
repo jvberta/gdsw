@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     return authentication.tokenAuth()(req, res, next);
 });
 
-
+app.get("/teste", (req,res) => res.send("teste"));
 app.use("/api/projetos", routes.projeto);
 app.use("/auth", routes.authentication())
 app.use("/api/usuarios", routes.usuario);
