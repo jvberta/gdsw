@@ -1,0 +1,11 @@
+api:
+    build: .
+    ports:
+        - "80:8080"
+    links:
+        - mongo
+    environment:
+        - PORT=8080
+        - DB_HOST=mongodb://mongo:27017/gdsw
+mongo:
+    image: mongo
