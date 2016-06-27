@@ -91,6 +91,16 @@ module.exports = {
 			.then(projeto => res.json(projeto))
 			.catch(err => next(err));
 
+    },
+
+    enviarMsg(req, res, next) {
+        const {idProjeto, userId} = req.params;
+        const loggedUser = req.user._id;
+        const {mensagem} = req.body;
+
+        Projeto.enviarMsg(idProjeto, loggedUser, userId, mensagem)
+            .then(projeto => res.json(projeto))
+            .catch(err => next(err));
     }
 
 };

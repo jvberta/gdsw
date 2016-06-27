@@ -105,6 +105,15 @@ ProjetoSchema.statics = {
         .then(projeto => existsOrRejectWithNotFound(projeto, query))
         .then(projeto => projeto.vagas.length === projeto.vagasPreenchidas.length ?
                 this.findByIdAndUpdate(idProjeto, {status: "finalizado"}, options): projeto);
+    },
+
+    enviarMsg(idProjeto, from, to, message) {
+        const query = {_id: idProjeto};
+        const mod = {$addToSet:{entrevista: {from, to, message}}};
+        const options = {new: true};
+
+        return this.findByIdAndUpdate(idProjeto, mod, options)
+            .then(projeto => existsOrRejectWithNotFound(projeto, query));
     }
 };
 

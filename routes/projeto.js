@@ -26,10 +26,10 @@ router.route("/:idProjeto/candidatos/me")
     .post(projetoCtrl.candidatarSeAoProjeto)
     .delete(projetoCtrl.descandidatarSeDoProjeto);
 
-    router.route("/:idProjeto/escolhidos")
-        .post(projetoCtrl.escolherCandidato);
+router.route("/:idProjeto/escolhidos")
+    .post(projetoCtrl.escolherCandidato);
 
-
-
+router.route("/:idProjeto/messages/from/me/to/:userId")
+    .post(projetoCtrl.enviarMsg);
 
 module.exports = router;
