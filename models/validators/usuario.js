@@ -45,11 +45,4 @@ UsuarioSchema.path("cpf")
 UsuarioSchema.path("siape")
     .validate(siape => validator.isNumeric(siape), "{PATH} {VALUE} deve conter apenas numeros");
 
-UsuarioSchema.path("campus")
-    .validate(inst => validator.isAlpha(validator.blacklist(inst, " ")), "{PATH} {VALUE} deve conter apenas letras");
-
-UsuarioSchema.path("curso")
-    .validate(curso => validator.isAlpha(validator.blacklist(curso," "),"pt-PT"),
-      "{PATH} {VALUE} deve conter apenas letras");
-
 module.exports = UsuarioSchema;

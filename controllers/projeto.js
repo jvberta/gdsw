@@ -43,6 +43,18 @@ module.exports = {
             .catch(err => next(err));
     },
 
+    showProjetosQueUsuarioSeCandidatou(req, res, next){
+        const usuario = req.user;
+        const query = req.query_handler || {};
+
+        query.fields = query.fields || {};
+        query.fields.candidatos = usuario._id;
+
+        Projeto.getAllByQuery(query)
+            .then(projetos => res.json(projetos))
+            .catch(err => next(err));
+    },
+
     update(req, res, next) {
         const idProjeto = req.params.idProjeto;
         const data = req.body;

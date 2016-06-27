@@ -53,10 +53,9 @@ module.exports = function (model) {
 
         console.log(query);
 
-        return promise.then(
+        return promise.populate("autor candidatos").then(
             results => {
                 return results.length ? Promise.resolve(results) : Promise.reject(new NotFound(model, query));
             });
     };
 };
-

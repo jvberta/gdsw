@@ -15,6 +15,9 @@ router.route("/")
 router.route("/me")
     .get(projetoCtrl.showProjetosByUsuario);
 
+router.route("/me/candidato")
+    .get(projetoCtrl.showProjetosQueUsuarioSeCandidatou);
+
 router.route("/:idProjeto")
     .get(projetoCtrl.show)
     .put(projetoCtrl.update);

@@ -38,10 +38,11 @@ ProjetoSchema.statics = {
 
     getAllByQuery: queryPlugin("Projeto"),
 
-
     getById(id, projection = {}) {
         return this.findById(id, projection)
+            .populate("autor candidatos")
             .then(projeto => existsOrRejectWithNotFound(projeto, {id}));
+
     },
 
     update(idProjeto, data) {

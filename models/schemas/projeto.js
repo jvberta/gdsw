@@ -23,6 +23,7 @@ const ProjetoSchema = new Schema({
     descricao: String,
     status: {type: String, required: true, default: "emAberto"},
     campus: String,
+    areaDoConhecimento: String,
     vagas: [String],
     vagasPreenchidas: [String],
     candidatos: [{type: Schema.Types.ObjectId, ref: "Usuario"}],
