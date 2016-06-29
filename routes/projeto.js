@@ -35,6 +35,7 @@ router.route("/:idProjeto/messages/from/me/to/:userId")
 router.route("/:idProjeto/entrevista/me/with/:withUser")
     .get(projetoCtrl.listarEntrevista);
 
-
+router.route("/:idProjeto/status/finalizado")
+    .put(projetoCtrl.encerrarProjeto);
 
 module.exports = router;

@@ -125,6 +125,25 @@ ProjetoSchema.statics = {
 
         return this.findByIdAndUpdate(idProjeto, mod, options)
             .then(projeto => existsOrRejectWithNotFound(projeto, query));
+    },
+
+    encerrarProjeto(idProjeto) {
+        return this.getById(idProjeto)
+            .then(projeto => {
+                if(projeto.vagas.length !== projeto.vagasPreenchidas.length || projeto.status != "emAberto" ) {
+                    let erro = {};
+
+                    erro.status = {
+                        path: "status",
+                        value: "",
+                        message: "Projeto já foi encerrado ou as vagas não foram preenchidas"
+                    };
+
+                    throw new ValidationError("Projeto", erro);
+                }
+
+                return this.findByIdAndUpdate(idProjeto, {status: "finalizado"}, {new: true});
+            });
     }
 };
 

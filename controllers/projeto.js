@@ -110,6 +110,14 @@ module.exports = {
         Projeto.listarEntrevista(idProjeto, usuario, withUser)
             .then(mensagens => res.json(mensagens))
             .catch(err => next(err));
+    },
+
+    encerrarProjeto(req, res, next) {
+        const {idProjeto} = req.params;
+
+        Projeto.encerrarProjeto(idProjeto)
+            .then(projeto => res.json(projeto))
+            .catch(err => next(err));
     }
 
 };
