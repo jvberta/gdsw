@@ -5,6 +5,7 @@
 const mongoose = require("mongoose");
 const Promise = require("bluebird");
 const validator = require("validator");
+const _ = require("lodash");
 
 const queryPlugin = require("../query-plugin");
 const ProjetoSchema = require("./schemas/projeto.js");
@@ -105,6 +106,18 @@ ProjetoSchema.statics = {
         .then(projeto => existsOrRejectWithNotFound(projeto, query))
         .then(projeto => projeto.vagas.length === projeto.vagasPreenchidas.length ?
                 this.findByIdAndUpdate(idProjeto, {status: "finalizado"}, options): projeto);
+    },
+
+    listarEntrevista(idProjeto,idUsuario, idUsuario2){
+        return this.getById(idProjeto)
+            .then(projeto =>{
+                const msgs = projeto.entrevista
+                    .filter(mensagem => (
+                        (mensagem.from.toString() === idUsuario.toString() && mensagem.to.toString() === idUsuario2.toString()) ||
+                        (mensagem.to.toString() === idUsuario.toString() && mensagem.from.toString() === idUsuario2.toString())
+                    ));
+                return _.sortBy(msgs, "dataEnvio");
+            });
     },
 
     enviarMsg(idProjeto, from, to, message) {

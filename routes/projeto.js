@@ -32,4 +32,9 @@ router.route("/:idProjeto/escolhidos")
 router.route("/:idProjeto/messages/from/me/to/:userId")
     .post(projetoCtrl.enviarMsg);
 
+router.route("/:idProjeto/entrevista/me/with/:withUser")
+    .get(projetoCtrl.listarEntrevista);
+
+
+
 module.exports = router;

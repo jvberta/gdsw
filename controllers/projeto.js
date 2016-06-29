@@ -101,6 +101,15 @@ module.exports = {
         Projeto.enviarMsg(idProjeto, loggedUser, userId, mensagem)
             .then(projeto => res.json(projeto))
             .catch(err => next(err));
+    },
+
+    listarEntrevista(req, res, next) {
+        const {idProjeto, withUser} = req.params;
+        const usuario = req.user._id;
+
+        Projeto.listarEntrevista(idProjeto, usuario, withUser)
+            .then(mensagens => res.json(mensagens))
+            .catch(err => next(err));
     }
 
 };
