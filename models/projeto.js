@@ -103,9 +103,7 @@ ProjetoSchema.statics = {
             }
         })
         .then(() => this.findOneAndUpdate(query, mod, options))
-        .then(projeto => existsOrRejectWithNotFound(projeto, query))
-        .then(projeto => projeto.vagas.length === projeto.vagasPreenchidas.length ?
-                this.findByIdAndUpdate(idProjeto, {status: "finalizado"}, options): projeto);
+        .then(projeto => existsOrRejectWithNotFound(projeto, query));
     },
 
     listarEntrevista(idProjeto,idUsuario, idUsuario2){
